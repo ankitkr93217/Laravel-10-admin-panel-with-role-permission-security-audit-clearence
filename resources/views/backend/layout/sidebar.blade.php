@@ -39,7 +39,7 @@
             <ul>
                 <li> <a href="{{route('user_list')}}"><i class="bx bx-right-arrow-alt"></i>Users</a>
                 </li>
-                <li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Role</a>
+                <li> <a href="{{route('create_role')}}"><i class="bx bx-right-arrow-alt"></i>Role</a>
                 </li>
                 <li> <a href="ecommerce-add-new-products.html"><i class="bx bx-right-arrow-alt"></i>Permission</a>
                 </li>

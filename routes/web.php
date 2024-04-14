@@ -9,9 +9,8 @@ use App\Http\Controllers\web\ReactionFromMedicalDeviceController;
 
 
 use App\Http\Controllers\web\UserController;
-
-
-
+use App\Http\Controllers\web\RoleController;
+ 
 use Illuminate\Support\Facades\Artisan;
 
  
@@ -38,11 +37,20 @@ Route::prefix('admin/')->middleware(['auth:web'])->group(function () {
 //user management
  
 Route::prefix('admin/user')->middleware(['auth:web','web'])->group(function () {
+
+    //usermanagement
     Route::match(['get','post'],'create_user', [UserController::class, 'create_user'])->name('create_user'); 
     Route::get('user_list', [UserController::class, 'user_list'])->name('user_list'); 
     Route::match(['get','post'],'user_edit/{id?}', [UserController::class, 'user_edit'])->name('user_edit'); 
 
-    
+    //role management
+    Route::match(['get','post'],'create_role', [RoleController::class, 'create_role'])->name('create_role'); 
+    // Route::get('create_role', [RoleController::class, 'create_role'])->name('create_role'); 
+    Route::post('edit_role/{id}', [RoleController::class, 'edit_role'])->name('edit_role'); 
+    Route::get('role_list', [RoleController::class, 'role_list'])->name('role_list'); 
+    Route::get('delete_role/{id}', [RoleController::class, 'delete_role'])->name('delete_role'); 
+
+     //permission management
 
 });
 

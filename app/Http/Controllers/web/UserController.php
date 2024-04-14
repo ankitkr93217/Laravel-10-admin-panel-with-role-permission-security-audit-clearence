@@ -100,8 +100,30 @@ class UserController extends Controller{
             // dd($roles);
             return view('backend.userManagement.user.show_user',compact('user','roles'));
        }
-         return view('backend.userManagement.user.list',compact('users'));
+       return view('backend.userManagement.user.list',compact('users'));
     }
+
+    public function create_role(Request $request){
+        
+        if($request->method()=='POST'){
+
+            
+            
+        }
+        return view('backend.userManagement.role.create');
+    }
+
+    public function edit_role(Request $request){
+        
+        if($request->method()=='POST'){
+
+            
+            
+        }
+        return view('backend.userManagement.role.create');
+    }
+
+    
 
 
 }
