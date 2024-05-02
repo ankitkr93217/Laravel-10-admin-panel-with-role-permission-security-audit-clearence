@@ -151,21 +151,21 @@ class AuthController extends Controller
             // dd(Auth::user()->getRoleNames()[0]);
 			
             if(Auth::user()->getRoleNames()[0]=='ADMIN' ){   
-                return redirect()->route('dashboard');
+                return redirect()->route('adminDashboard');
             }elseif (Auth::user()->getRoleNames()[0]=='SUPER_ADMIN' ) {
  
                 // if($user->first_change_pass === 1){
                 //     return redirect()->route('changePasswordOneTime');
                 // }
-                return redirect()->route('dashboard');
+                return redirect()->route('adminDashboard');
                 // return redirect('auth/dashboard');
                 
             }else {
-                return redirect('auth/logout')->with( ['type'=>'warning','message'=>'Oppes! You have not any role! Please contact to Admin.']);
+                return redirect('admin/logout')->with( ['type'=>'warning','message'=>'Oppes! You have not any role! Please contact to Admin.']);
                 abort(404);
             }
      
-            return redirect('auth/logout')->with( ['type'=>'warning','message'=>'Oppes! You have not any role! Please contact to Admin.']);
+            return redirect('admin/logout')->with( ['type'=>'warning','message'=>'Oppes! You have not any role! Please contact to Admin.']);
             
 
         }else{
@@ -188,7 +188,7 @@ class AuthController extends Controller
                 DB::table('login_attempts')->insert($data);
             }
            
-			return redirect('admin/login')->with( ['type'=>'warning','message'=>'Oppes! You have entered invalid credentials']);
+			return redirect('/admin/login')->with( ['type'=>'warning','message'=>'Oppes! You have entered invalid credentials']);
 
         }
  
@@ -235,7 +235,7 @@ class AuthController extends Controller
         Session::flush();
         Auth::logout();
 
-        return redirect('/')->with( ['type'=>'success','message'=>'You have successfully logout!']);
+        return redirect('/admin/login')->with( ['type'=>'success','message'=>'You have successfully logout!']);
     }
 
     // public function myCaptchaPost(Request $request)

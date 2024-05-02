@@ -31,20 +31,21 @@ class RolePermissionSeeder extends Seeder
              return ['name' => $permission, 'guard_name' => 'web'];
          });
          
-        //  Permission::insert($permissions->toArray());
+        //Permission::insert($permissions->toArray());
         // create roles and assign created permissions
-         $role = Role::create(['name' => 'USER','guard_name'=>'api','team_id'=>1])->givePermissionTo($arrayOfPermissionNames);
-         $role = Role::create(['name' => 'USER','guard_name'=>'web'])->givePermissionTo($arrayOfPermissionNames);
-         $role = Role::create(['name' => 'ADMIN','guard_name'=>'web'])->givePermissionTo($arrayOfPermissionNames);
-         $role = Role::create(['name' => 'SUPER_ADMIN','guard_name'=>'web'])->givePermissionTo($arrayOfPermissionNames);
+        //  $role = Role::create(['name' => 'USER','guard_name'=>'api','team_id'=>1])->givePermissionTo($arrayOfPermissionNames);
+         //$role = Role::create(['name' => 'USER','guard_name'=>'web'])->givePermissionTo($arrayOfPermissionNames);
+         //$role = Role::create(['name' => 'ADMIN','guard_name'=>'web'])->givePermissionTo($arrayOfPermissionNames);
+        //  $role = Role::create(['name' => 'SUPER_ADMIN','guard_name'=>'web'])->givePermissionTo($arrayOfPermissionNames);
         // $role = Role::create(['name' => 'USER','guard_name'=>'api']);
         // $role = Role::create(['name' => 'ADMIN','guard_name'=>'api']);
         // $role = Role::create(['name' => 'SUPER_ADMIN','guard_name'=>'api']);
 
+
          // Set TeamId
-        //  $user=User::find(3);
+         $user=User::find(1);
         //  setPermissionsTeamId($user->id);
-        //  $user->assignRole('super_admin');
+         $user->assignRole('USER');
           
          //dd(User::doesntHave('roles')->get());
          //dd(Role::all()->pluck('name'));

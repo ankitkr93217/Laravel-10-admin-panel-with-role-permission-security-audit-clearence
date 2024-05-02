@@ -12,6 +12,7 @@ use App\Http\Controllers\web\UserController;
 use App\Http\Controllers\web\RoleController;
  
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\web\StripePaymentController;
 
  
 Route::get('/linkstorage', function () {
@@ -24,14 +25,14 @@ Route::get('refresh_captcha', [AuthController::class, 'refreshCaptcha'])->name('
 Route::get('admin/login', [AuthController::class, 'index'])->name('login');
 Route::get('lock-account', [AuthController::class, 'locked_account'])->name('locked_account');
 
-Route::prefix('admin/auth')->middleware(['guest:web'])->group(function () {
+Route::prefix('admin/')->middleware(['guest:web'])->group(function () {
     Route::post('postLogin', [AuthController::class, 'postLogin'])->name('postLogin'); 
 });
-Route::prefix('admin/auth')->middleware(['auth:web'])->group(function () {
+Route::prefix('admin/')->middleware(['auth:web'])->group(function () {
      Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
 });
 Route::prefix('admin/')->middleware(['auth:web'])->group(function () {
-    Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard'); 
+    Route::get('dashboard', [AuthController::class, 'dashboard'])->name('adminDashboard'); 
 });
 
 //user management
@@ -53,6 +54,11 @@ Route::prefix('admin/user')->middleware(['auth:web','web'])->group(function () {
      //permission management
 
 });
+
+  
+/////Stripe Payment Getway Integration
+Route::get('stripe', [StripePaymentController::class, 'stripe']);
+Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
 
 Route::prefix('reactionFromDrug')->middleware(['auth:web','web'])->group(function () {
     Route::get('consumer_side_effect_list', [ReactionFromDrugController::class, 'consumerSideEffectList'])->name('consumerSideEffectList'); 
